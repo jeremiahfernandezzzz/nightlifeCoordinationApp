@@ -22,7 +22,7 @@ app.get("/", function (request, response) {
   }).then(response => {
     console.log(response.jsonBody.businesses[0].name);
   }).catch(e => {
-    console.log(e);
+    console.log(process.env.apiKey);
   });
 });
 
