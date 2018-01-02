@@ -15,14 +15,14 @@ const client = yelp.client(process.env.apiKey);
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) { 
+app.get("/:qwe", function (request, response) { 
   client.search({
-    term:'Four Barrel Coffee',
-    location: 'san francisco, ca'
+    term:request.params.qwe,
+    location: 'bicol, philippines'
   }).then(response => {
     console.log(response.jsonBody.businesses[0].name);
   }).catch(e => {
-    console.log(process.env.apiKey);
+    console.log(e);
   });
 });
 
