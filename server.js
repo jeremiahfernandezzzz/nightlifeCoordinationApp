@@ -7,13 +7,23 @@ var app = express();
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
+const yelp = require('yelp-fusion');
+ 
+const client = yelp.client(process.env.apiKey);
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
-  response.send("sup")
+app.get("/", function (request, response) { 
+  client.search({
+    term:'Four Barrel Coffee',
+    location: 'san francisco, ca'
+  }).then(response => {
+    console.log(response.jsonBody.businesses[0].name);
+  }).catch(e => {
+    console.log(e);
+  });
 });
 
 
