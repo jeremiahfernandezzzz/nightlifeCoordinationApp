@@ -97,15 +97,14 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
-  var bus = [];
+  var bus;
   client.search({
     //term:'Four Barrel Coffee',
     location: 'bicol'
   }).then(response => {
-    bus = response
-  }).then(
+    bus = response;
     console.log(bus)
-  ).catch(e => {
+  }).catch(e => {
     console.log(e);
   });
 })
