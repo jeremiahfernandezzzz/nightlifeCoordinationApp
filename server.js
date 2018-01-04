@@ -104,9 +104,9 @@ app.get("/search", function(request,response){
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.keys(result).forEach(function(res){
-      bus.push(res)
+      //bus
     })
-    response.send(bus)
+    response.send(result)
   }).catch(e => {
     console.log(e);
   });
