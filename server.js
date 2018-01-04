@@ -102,7 +102,8 @@ app.get("/search", function(request,response){
     //term:'Four Barrel Coffee',
     location: 'bicol'
   }).then(result => {
-    response.send(JSON.stringify(result).replace(/\\/g, /\n/))
+    //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
+    response.send(typeof(result))
   }).catch(e => {
     console.log(e);
   });
