@@ -100,9 +100,9 @@ app.get("/search", function(request,response){
   
   client.search({
     //term:'Four Barrel Coffee',
-    location: 'san francisco, ca'
+    location: 'bicol'
   }).then(response => {
-    console.log(response.jsonBody.businesses[0].name);
+    console.log(response.jsonBody.businesses[1].name);
   }).catch(e => {
     console.log(e);
   });
