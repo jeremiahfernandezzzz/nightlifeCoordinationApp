@@ -41,7 +41,7 @@ app.use(passport.session());
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: "http://cultured-numeric.glitch.me/auth/twitter/callback"
+    callbackURL: "http://fast-case.glitch.me/auth/twitter/callback"
 },
   function(token, tokenSecret, profile, cb) {
     User.findOrCreate({ twitterId: profile.id }, function (err, user) {
