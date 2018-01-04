@@ -76,6 +76,11 @@ var listener = app.listen(process.env.PORT, function () {
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   //console.log(JSON.stringify(request.users));
+  if (request.user){
+    console.log("auth")
+  } else {
+    console.log("not auth")
+  }
   response.send("hi");
   //response.set
   
