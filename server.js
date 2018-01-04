@@ -104,14 +104,11 @@ app.get("/search", function(request,response){
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
-      bus = {
-        name : res.name,
-        
-      }
+      console.log(
     })
     //console.log(result.body);
     //response.send(result[0])
   }).catch(e => {
-    console.log(e);
+    //console.log(bus);
   });
 })
