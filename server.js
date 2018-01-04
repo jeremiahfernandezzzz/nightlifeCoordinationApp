@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 var mongodb = require("mongodb")
 var MongoClient = mongodb.MongoClient;
-//var url = process.env.DB_URL;
+var url = process.env.DB_URL;
 var session = require('express-session');
 var passport = require('passport')
   , TwitterStrategy = require('passport-twitter').Strategy;
@@ -15,7 +15,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-//mongoose.connect(url);
+mongoose.connect(url);
 
 var findOrCreate = require('mongoose-findorcreate')
 var Schema = mongoose.Schema;
