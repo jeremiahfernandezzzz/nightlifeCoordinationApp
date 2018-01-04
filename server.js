@@ -103,7 +103,7 @@ app.get("/search", function(request,response){
     location: 'bicol'
   }).then(response => {
     bus = response;
-    bus.forEach(function(businesses){
+    JSON.parse(bus).forEach(function(businesses){
       response.send(businesses[0].name)
     })
   }).catch(e => {
