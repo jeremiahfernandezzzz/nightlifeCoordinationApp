@@ -104,9 +104,9 @@ app.get("/search", function(request,response){
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
-      console.log("name: " + res.name + " | address: " + res.address1)
+      console.log("name: " + res.name + " | address: " + res.location.display_address1)
     })
-    console.log(result.body);
+    console.log(result.jsonBody.businesses[0]);
     //response.send(result[0])
   }).catch(e => {
     //console.log(bus);
