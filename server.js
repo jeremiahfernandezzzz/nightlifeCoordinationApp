@@ -22,7 +22,7 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({ twitterId: Number});
 UserSchema.plugin(findOrCreate);
 //var User = mongoose.model('User', UserSchema);
-var User = mongoose.model('User2', UserSchema);
+var User = mongoose.model('user-nightlife', UserSchema);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
