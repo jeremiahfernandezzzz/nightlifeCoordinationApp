@@ -51,7 +51,7 @@ passport.use(new TwitterStrategy({
 },
   function(token, tokenSecret, profile, cb) {
     User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-      console.log('A new uxer from "%s" was inserted', user.twitterId);
+      console.log('A new user from "%s" was inserted', user.twitterId);
       return cb(err, user);
     });
   }));
@@ -102,8 +102,7 @@ app.get("/search", function(request,response){
     //term:'Four Barrel Coffee',
     location: 'bicol'
   }).then(response => {
-    bus.push(response.jsonBody);
-    //console.log(response.jsonBody.businesses[1].name);
+    response.toArray(function(el))
   }).catch(e => {
     console.log(e);
   });
