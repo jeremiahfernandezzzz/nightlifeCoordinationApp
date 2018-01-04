@@ -103,8 +103,8 @@ app.get("/search", function(request,response){
     location: 'bicol'
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
-    Object.keys(result.body).forEach(function(res){
-      console.log(result.body)
+    Object.keys(result).forEach(function(res){
+      console.log(res)
     })
     response.send(bus)
   }).catch(e => {
