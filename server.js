@@ -78,11 +78,10 @@ var listener = app.listen(process.env.PORT, function () {
 app.get("/", function (request, response) {
   //console.log(JSON.stringify(request.users));
   if (request.user){
-    console.log("auth")
+    response.send("hi");
   } else {
-    console.log("not auth")
+    response.send("hello");
   }
-  response.send("hi");
   //response.set
   
 });
