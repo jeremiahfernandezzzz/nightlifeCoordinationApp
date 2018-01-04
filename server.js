@@ -97,12 +97,13 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
-  var bus;
+  var bus = [];
   client.search({
     //term:'Four Barrel Coffee',
     location: 'bicol'
   }).then(response => {
-    response.jsonBody.forEach(function(businesses){
+    bus = response;
+    bus.forEach(function(businesses){
       response.send(businesses[0].name)
     })
   }).catch(e => {
