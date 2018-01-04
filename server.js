@@ -33,7 +33,7 @@ db.once('open', function() {
  
 const yelp = require('yelp-fusion');
  
-const client = yelp.client(apiKey);
+const client = yelp.client(process.env.apiKey);
  
 
 // Authentication configuration
@@ -96,15 +96,15 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
-app.get("/search/:qwe", function(request,response){
+app.get("/search", function(request,response){
   
   client.search({
-    term:'Four Barrel Coffee',
+    //term:'Four Barrel Coffee',
     location: 'san francisco, ca'
   }).then(response => {
     console.log(response.jsonBody.businesses[0].name);
   }).catch(e => {
     console.log(e);
-});
+  });
 
 })
