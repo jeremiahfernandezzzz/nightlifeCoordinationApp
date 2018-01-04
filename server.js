@@ -102,10 +102,9 @@ app.get("/search", function(request,response){
     //term:'Four Barrel Coffee',
     location: 'bicol'
   }).then(response => {
-    bus = JSON.(response)
-  }).then(
+    bus = JSON.stringify(response);
     console.log(bus)
-  ).catch(e => {
+  }).catch(e => {
     console.log(e);
   });
 })
