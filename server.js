@@ -106,6 +106,7 @@ app.get("/search", function(request,response){
     Object.keys(result.jsonBody.businesses).forEach(function(res){
       console.log(res)
     })
+    //console.log(result.jsonBody.businesses[0].name);
     //response.send(result[0])
   }).catch(e => {
     console.log(e);
