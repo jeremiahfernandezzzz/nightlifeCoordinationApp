@@ -29,7 +29,12 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("we're connected!")
 });
-
+'use strict';
+ 
+const yelp = require('yelp-fusion');
+ 
+const client = yelp.client(apiKey);
+ 
 
 // Authentication configuration
 app.use(session({
@@ -91,3 +96,15 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
+app.get("/search/:qwe", function(request,response){
+  
+  client.search({
+    term:'Four Barrel Coffee',
+    location: 'san francisco, ca'
+  }).then(response => {
+    console.log(response.jsonBody.businesses[0].name);
+  }).catch(e => {
+    console.log(e);
+});
+
+})
