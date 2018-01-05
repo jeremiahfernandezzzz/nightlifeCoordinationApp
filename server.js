@@ -96,7 +96,7 @@ app.get("/search", function(request,response){
   var bus = {};
   client.search({
     term:'bars',
-    location: request.body.qwe
+    location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){

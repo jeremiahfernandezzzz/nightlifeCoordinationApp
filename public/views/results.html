@@ -40,7 +40,7 @@
 						<h2>search</h2>
 						<p>
               <form action="/search" method="get">
-                <input type="text" id="mySearch">
+                <input type="text" id="mySearch" name="q" style="width:50%; text-align:center">
                 <input type="Submit" class="button special" value="submit">
               </form>
             </p>
@@ -57,5 +57,5 @@
   req.open('GET', document.location, false);
   req.send(null);
   
-  alert(req.getResponseHeader("bus"));
+  //alert(req.getResponseHeader("bus"));
 </script>
