@@ -75,6 +75,8 @@ app.use(express.static(__dirname + '/public/views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static(__dirname + '/public/views'));
+
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
@@ -99,7 +101,7 @@ app.get("/logout", function(request, response){
 app.get("/search/:qwe", function(request,response){
   var bus = {};
   client.search({
-    //term:'nightlife',
+    term:'bars',
     location: request.params.qwe
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
