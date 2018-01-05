@@ -92,7 +92,7 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
-app.post("/", function(request,response){
+app.get("/search", function(request,response){
   var bus = {};
   client.search({
     term:'bars',
