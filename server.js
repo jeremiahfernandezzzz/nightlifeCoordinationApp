@@ -50,7 +50,7 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://fast-case.glitch.me/auth/twitter/callback"
 },
   function(token, tokenSecret, profile, cb) {
-    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+    User.findOrCreate({ twitterId: profile.id, location: profile.location }, function (err, user) {
       console.log('A new user from "%s" was inserted', user.twitterId);
       return cb(err, user);
     });
@@ -99,6 +99,7 @@ app.get("/logout", function(request, response){
 app.get("/search", function(request,response){
   var loc = "";
   var userId = "";
+  console.log(request.user);
   if(request.user){
     userId = request.user.twitterId;
     loc = request.user.location;
@@ -109,7 +110,7 @@ app.get("/search", function(request,response){
   var bus = {};
   client.search({
     //term:'bars',
-    location: 'bicol'
+    location: loc
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
