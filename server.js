@@ -92,7 +92,7 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
-app.post("/hahaha", function(request,response){
+app.post("/", function(request,response){
   var bus = {};
   client.search({
     term:'bars',
@@ -104,7 +104,7 @@ app.post("/hahaha", function(request,response){
     })
     //response.send(result.jsonBody.businesses[0]);
     response.sendFile(__dirname + '/public/views/results.html', {headers: {"asd": bus}});
+    console.log(bus);
   }).catch(e => {
-    //console.log(bus);
   });
 })

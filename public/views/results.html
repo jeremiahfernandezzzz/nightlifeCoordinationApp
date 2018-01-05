@@ -39,7 +39,7 @@
 					<header class="major">
 						<h2>search</h2>
 						<p>
-              <form action="/hahaha" method="post">
+              <form action="/" method="post">
                 <input type="search" id="mySearch" name="qwe">
                 <button>Search</button>
               </form>
@@ -57,5 +57,5 @@
   req.open('GET', document.location, false);
   req.send(null);
   
-  alert(req.getAllResponseHeaders());
+  alert(req.getResponseHeader("asd"));
 </script>
