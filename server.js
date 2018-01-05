@@ -84,13 +84,7 @@ var listener = app.listen(process.env.PORT, function () {
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   //console.log(JSON.stringify(request.users));
-  if (request.user){
-    response.send("hi");
-  } else {
-    response.send("hello");
-  }
-  //response.set
-  
+  response.sendFile(__dirname + '/public/views/results.html');
 });
 
 app.get("/logout", function(request, response){
