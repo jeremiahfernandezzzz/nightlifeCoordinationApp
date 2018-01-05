@@ -96,18 +96,18 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
-app.get("/search", function(request,response){
+app.get("/search/:qwe", function(request,response){
   var bus = {};
   client.search({
     //term:'Four Barrel Coffee',
-    location: 'bicol'
+    location: request.params.qwe
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
-      console.log("name: " + res.name + " | id: " + res.id)
+      bus[res.name] = res.id
     })
-    console.log(result.jsonBody.businesses[0]);
-    //response.send(result[0])
+    //response.send(result.jsonBody.businesses[0]);
+    response.send(JSON.stringify(bus).replace(",","\n\n"))
   }).catch(e => {
     //console.log(bus);
   });
