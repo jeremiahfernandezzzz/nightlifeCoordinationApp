@@ -84,7 +84,11 @@ var listener = app.listen(process.env.PORT, function () {
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   //console.log(JSON.stringify(request.users));
-  response.sendFile(__dirname + '/public/views/results.html');
+  if(request.user){
+    response.redirect('/search');
+  } else {
+    response.sendFile(__dirname + '/public/views/results.html');
+  }
 });
 
 app.get("/logout", function(request, response){
@@ -93,10 +97,19 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
+  var loc = "";
+  var user = "";
+  if(request.user){
+    user = request.user.twitterId;
+    loc = request.user.location;
+  } else {
+    loc = request.query.q
+  }
+  
   var bus = {};
   client.search({
     //term:'bars',
-    location: request.query.q
+    location: loc
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
