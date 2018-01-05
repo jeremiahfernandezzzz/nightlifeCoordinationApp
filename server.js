@@ -84,7 +84,7 @@ var listener = app.listen(process.env.PORT, function () {
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   //console.log(JSON.stringify(request.users));
-    response.sendFile(__dirname + '/public/views/results.html', {headers: {"results": bus}});
+  response.sendFile(__dirname + '/public/views/results.html');
 });
 
 app.get("/logout", function(request, response){
@@ -92,7 +92,7 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
-app.post("/", function(request,response){
+app.post("/hahaha", function(request,response){
   var bus = {};
   client.search({
     term:'bars',
@@ -103,7 +103,7 @@ app.post("/", function(request,response){
       bus[res.name] = res.id
     })
     //response.send(result.jsonBody.businesses[0]);
-    response.sendFile(__dirname + '/public/views/results.html');
+    response.sendFile(__dirname + '/public/views/results.html', {headers: {"asd": bus}});
   }).catch(e => {
     //console.log(bus);
   });
