@@ -50,8 +50,9 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://fast-case.glitch.me/auth/twitter/callback"
 },
   function(token, tokenSecret, profile, cb) {
-  console.log(profile._raw.location);
-    User.findOrCreate({ twitterId: profile.id, location: JSON.parse(profile._raw) }, function (err, user) {
+  var loc = JSON.parse(profile._raw).location;
+  console.log(typeof(loc))
+    User.findOrCreate({ location: loc }, function (err, user) {
       console.log('A new user from "%s" was inserted', user.location);
       return cb(err, user);
     });
