@@ -103,7 +103,7 @@ app.post("/", function(request,response){
       bus[res.name] = res.id
     })
     //response.send(result.jsonBody.businesses[0]);
-    response.sendFile(__dirname + '/public/views/results.html', {headers: {"asd": bus}});
+    response.sendFile(path.join(__dirname + '/public/views/results.html'), {headers: {"bus": bus}});
     console.log(bus);
   }).catch(e => {
   });
