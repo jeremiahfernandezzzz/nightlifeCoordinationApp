@@ -19,7 +19,7 @@ mongoose.connect(url);
 
 var findOrCreate = require('mongoose-findorcreate')
 var Schema = mongoose.Schema;
-var UserSchema = new Schema({ twitterId: Number});
+var UserSchema = new Schema({ twitterId: Number, twitterLocation: String});
 UserSchema.plugin(findOrCreate);
 //var User = mongoose.model('User', UserSchema);
 var User = mongoose.model('user-nightlife', UserSchema);
@@ -50,9 +50,7 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://fast-case.glitch.me/auth/twitter/callback"
 },
   function(token, tokenSecret, profile, cb) {
-    console.log(profile);
-    var loc = JSON.parse(profile._raw).location;
-    User.findOrCreate({location: loc}, function (err, user) {
+    User.findOrCreate({twitterId: profile.id,  twitterLocation: JSON.parse(profile._raw).location}, function (err, user) {
       //console.log('A new user from "%s" was inserted', user.location);
       return cb(err, user);
     });
@@ -99,15 +97,15 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
-  //var loc = "";
-  //var userId = "";
-  //console.log(request.user);
-  //if(request.user){
-  //  userId = request.user.twitterId;
-  //  loc = request.user.location;
-  //} else {
+  var loc = "";
+  var userId = "";
+  console.log(request.user);
+  if(request.user){
+    userId = request.user.twitterId;
+    loc = request.user.twitterLocation;
+  } else {
     var loc = request.query.q
-  //}
+  }
   
   var bus = {};
   client.search({
