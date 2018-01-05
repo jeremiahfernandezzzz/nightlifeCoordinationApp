@@ -50,10 +50,10 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://fast-case.glitch.me/auth/twitter/callback"
 },
   function(token, tokenSecret, profile, cb) {
-  var loc = JSON.parse(profile._raw).location;
-  console.log(typeof(loc))
-    User.findOrCreate({ location: loc }, function (err, user) {
-      console.log('A new user from "%s" was inserted', user.location);
+    console.log(profile);
+    var loc = JSON.parse(profile._raw).location;
+    User.findOrCreate({location: loc}, function (err, user) {
+      //console.log('A new user from "%s" was inserted', user.location);
       return cb(err, user);
     });
   }));
@@ -99,15 +99,15 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
-  var loc = "";
-  var userId = "";
-  console.log(request.user);
-  if(request.user){
-    userId = request.user.twitterId;
-    loc = request.user.location;
-  } else {
-    loc = request.query.q
-  }
+  //var loc = "";
+  //var userId = "";
+  //console.log(request.user);
+  //if(request.user){
+  //  userId = request.user.twitterId;
+  //  loc = request.user.location;
+  //} else {
+    var loc = request.query.q
+  //}
   
   var bus = {};
   client.search({
