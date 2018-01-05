@@ -99,12 +99,12 @@ app.get("/logout", function(request, response){
 app.get("/search/:qwe", function(request,response){
   var bus = {};
   client.search({
-    //term:'Four Barrel Coffee',
+    //term:'nightlife',
     location: request.params.qwe
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
-      bus[res.name] = res.id
+      bus[res.name] = res.categories
     })
     //response.send(result.jsonBody.businesses[0]);
     response.send(bus)
