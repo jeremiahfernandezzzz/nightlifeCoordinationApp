@@ -35,15 +35,15 @@
 
 		<!-- One -->
 			<section id="one" class="wrapper style3 special">
-				<div class="container">
+				<div class="container 50%">
 					<header class="major">
 						<h2>search</h2>
-						<p>
               <form action="/search" method="get">
-                <input type="text" id="mySearch" name="q" style="width:50%; text-align:center">
+              <div class="12u$(small)">
+                <input type="text" id="mySearch" name="q">
                 <input type="Submit" class="button special" value="submit">
+              </div>
               </form>
-            </p>
 					</header>
 				</div>
 			</section>
@@ -57,5 +57,13 @@
   req.open('GET', document.location, false);
   req.send(null);
   
+  var bus = JSON.parse(req.getResponseHeader("bus"));
+  
+  bus.forEach(function(element){
+    var result = document.createElement("a");
+    result.setAttribute("class", "button special");
+    result.innerHTML = bus.name;
+    result.setAttribute("href", bus.id);
   //alert(req.getResponseHeader("bus"));
+  })
 </script>

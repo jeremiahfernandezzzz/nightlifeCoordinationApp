@@ -95,7 +95,7 @@ app.get("/logout", function(request, response){
 app.get("/search", function(request,response){
   var bus = {};
   client.search({
-    term:'bars',
+    //term:'bars',
     location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
