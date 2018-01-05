@@ -92,18 +92,18 @@ app.get("/logout", function(request, response){
   response.redirect('/');
 })
 
-app.get("/search/:qwe", function(request,response){
+app.post("/", function(request,response){
   var bus = {};
   client.search({
     term:'bars',
-    location: request.params.qwe
+    location: request.body.qwe
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
-      bus[res.name] = res.categories
+      bus[res.name] = res.id
     })
     //response.send(result.jsonBody.businesses[0]);
-    response.send(bus)
+    response.sendFile(bus)
   }).catch(e => {
     //console.log(bus);
   });
