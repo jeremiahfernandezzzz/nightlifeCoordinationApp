@@ -107,7 +107,7 @@ app.get("/search/:qwe", function(request,response){
       bus[res.name] = res.id
     })
     //response.send(result.jsonBody.businesses[0]);
-    response.send(JSON.stringify(bus).replace(",","\n\n"))
+    response.send(bus)
   }).catch(e => {
     //console.log(bus);
   });
