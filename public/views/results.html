@@ -59,11 +59,12 @@
   
   var bus = JSON.parse(req.getResponseHeader("bus"));
   
-  bus.forEach(function(element){
+  Object.entries(bus).forEach(function(element){
     var result = document.createElement("a");
     result.setAttribute("class", "button special");
-    result.innerHTML = bus.name;
-    result.setAttribute("href", bus.id);
+    result.innerHTML = element[0];
+    result.setAttribute("href", element[1]);
   //alert(req.getResponseHeader("bus"));
+    document.body.append(result)
   })
 </script>
