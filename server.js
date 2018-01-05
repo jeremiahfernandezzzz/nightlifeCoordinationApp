@@ -102,6 +102,7 @@ app.post("/", function(request,response){
     Object.values(result.jsonBody.businesses).forEach(function(res){
       bus[res.name] = res.id
     })
+    bus = JSON.stringify(bus);
     //response.send(result.jsonBody.businesses[0]);
     response.sendFile(path.join(__dirname + '/public/views/results.html'), {headers: {"bus": bus}});
     console.log(bus);
