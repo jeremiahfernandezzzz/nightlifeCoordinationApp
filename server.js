@@ -98,9 +98,9 @@ app.get("/logout", function(request, response){
 
 app.get("/search", function(request,response){
   var loc = "";
-  var user = "";
+  var userId = "";
   if(request.user){
-    user = request.user.twitterId;
+    userId = request.user.twitterId;
     loc = request.user.location;
   } else {
     loc = request.query.q
@@ -109,7 +109,7 @@ app.get("/search", function(request,response){
   var bus = {};
   client.search({
     //term:'bars',
-    location: loc
+    location: 'bicol'
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
