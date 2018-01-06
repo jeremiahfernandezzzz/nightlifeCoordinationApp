@@ -129,24 +129,7 @@ app.get("/search/:qwe", function(request, response) {
   //function(token, tokenSecret, place, cb) {
   if(request.user){
      MongoClient.connect(url, function(err, db){
-       if (db){ 
-          console.log("connected to " + url); 
-          db.collection("polls").find({}).sort({_id:-1}).toArray().then(element => {
-            //console.log(element);
-            var polls = element;
-            var currentUser = "";
-            if (request.user) {
-              var currentUser = request.user.twitterId;
-            }
-            polls = JSON.stringify(polls);
-            //response.writeHead(200, {'polls' : polls});
-            //response.end("yo");
-            console.log(polls)
-            response.sendFile(path.join(__dirname + '/public/views/polls.html'), {headers: {'polls' : polls, 'currentUser': currentUser}});
-          })
-          //console.log(polls)
-        }
-       /*
+    
         if (db){
               console.log("connected to " + url);
               db.collection("places-nightlife").find({'placeId' : request.params.qwe, 'goerId': request.user.twitterId}).toArray().then(element => {
@@ -155,13 +138,14 @@ app.get("/search/:qwe", function(request, response) {
               response.send(request.user.twitterId + " is going to " + request.params.qwe);
               //console.log(request.body);
             } else {
+              response.send(request.user.twitterId + " is already going to " + request.params.qwe);
               //console.log("poll not added");
               //console.log(request.body);
               //response.send("poll not added")
             }
           })
         }
-       */
+       
         if (err) {
          console.log("did not connect to " + url)
         }
