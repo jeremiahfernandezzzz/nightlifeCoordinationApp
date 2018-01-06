@@ -131,15 +131,15 @@ app.get("/search/:qwe", function(request, response) {
      MongoClient.connect(url, function(err, db){
         if (db){
               console.log("connected to " + url);
-              db.collection("polls").find({'title' : poll["title"]}).toArray().then(element => {
+              db.collection("polls").find({"user": request.user.twitterId}).toArray().then(element => {
             if (element == "") {
-              db.collection("polls").insert(poll);
-              response.redirect("/mypolls");
+              //db.collection("places-nightlife").insert({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
+              //response.send(request.user.twitterId + " is going to " + request.params.qwe);
               //console.log(request.body);
+              console.log(element);
             } else {
-              console.log("poll not added");
-              //console.log(request.body);
-              response.send("poll not added")
+              //console.log("poll not added");
+              //response.send("poll not added")
             }
           })
         }
