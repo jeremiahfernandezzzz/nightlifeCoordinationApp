@@ -24,10 +24,6 @@ UserSchema.plugin(findOrCreate);
 //var User = mongoose.model('User', UserSchema);
 var User = mongoose.model('user-nightlife', UserSchema);
 
-var PlaceSchema = new Schema({ placeId: Number, goerId: Number});
-PlaceSchema.plugin(findOrCreate);
-//var User = mongoose.model('User', UserSchema);
-var Place = mongoose.model('place-nightlife', PlaceSchema);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -132,11 +128,25 @@ app.get("/search", function(request,response){
 app.get("/search/:qwe", function(request, response) {
   //function(token, tokenSecret, place, cb) {
   if(request.user){
-    Place.findOrCreate({placeId: request.params.qwe,  goerId: request.user.twitterId}, function (err, user) {
-      console.log(Place.goerId + " is going to " + Place.placeId);
-      //return cb(err, user);
-    });
-  //};
+     MongoClient.connect(url, function(err, db){
+        if (db){
+              console.log("connected to " + url);
+              db.collection("polls").find({'title' : poll["title"]}).toArray().then(element => {
+            if (element == "") {
+              db.collection("polls").insert(poll);
+              response.redirect("/mypolls");
+              //console.log(request.body);
+            } else {
+              console.log("poll not added");
+              //console.log(request.body);
+              response.send("poll not added")
+            }
+          })
+        }
+        if (err) {
+         console.log("did not connect to " + url)
+        }
+      })
   } else {
     response.redirect('/auth/twitter');
   }
