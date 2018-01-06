@@ -27,7 +27,7 @@ var User = mongoose.model('user-nightlife', UserSchema);
 var PlaceSchema = new Schema({ placeId: Number, goerId: Number});
 PlaceSchema.plugin(findOrCreate);
 //var User = mongoose.model('User', UserSchema);
-var Place = mongoose.model('places-nightlife', PlaceSchema);
+var Place = mongoose.model('place-nightlife', PlaceSchema);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
