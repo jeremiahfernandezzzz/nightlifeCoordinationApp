@@ -130,5 +130,14 @@ app.get("/search", function(request,response){
 })
 
 app.get("/search/:qwe", function(request, response) {
-  
+  //function(token, tokenSecret, place, cb) {
+  if(request.user){
+    Place.findOrCreate({placeId: request.params.qwe,  goerId: request.user.twitterId}, function (err, user) {
+      console.log(Place.goerId + " is going to " + Place.placeId);
+      //return cb(err, user);
+    });
+  //};
+  } else {
+    response.redirect('/auth/twitter');
+  }
 })
