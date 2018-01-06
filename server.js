@@ -117,23 +117,12 @@ app.get("/search", function(request,response){
     Object.values(result.jsonBody.businesses).forEach(function(res){
       
       bus[res.name] = res.id;
-     MongoClient.connect(url, function(err, db){
-        db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
-          //element
-          
-          console.log(res.id + " " + element)
-        })
-     })
+      
     })
     bus = JSON.stringify(bus);
     //response.send(result.jsonBody.businesses[0]);
-    db.collection("places-nightlife").find({'placeId' : request.params.qwe, 'goerId': request.user.twitterId}).toArray().then(element => {
-      if (element == "") {
-      } else {
-      }
-    })
     response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
-    console.log(bus);
+    //console.log(bus);
   }).catch(e => {
   });
 })
