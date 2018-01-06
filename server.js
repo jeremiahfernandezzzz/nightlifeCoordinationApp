@@ -86,7 +86,7 @@ var listener = app.listen(process.env.PORT, function () {
 app.get("/", function (request, response) {
   //console.log(JSON.stringify(request.users));
   //if(request.user){
-    response.redirect('/search');
+    //response.redirect('/search');
   //} else {
     response.sendFile(__dirname + '/public/views/search.html');
   //}
@@ -111,14 +111,22 @@ app.get("/search", function(request,response){
   var bus = {};
   client.search({
     //term:'bars',
-    location: loc
+    location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
+    db.collection("places-nightlife").find({'placeId' : request.query.q}).count().then(element => {
+      console.log(element)
+    })
       bus[res.name] = res.id
     })
     bus = JSON.stringify(bus);
     //response.send(result.jsonBody.businesses[0]);
+    db.collection("places-nightlife").find({'placeId' : request.params.qwe, 'goerId': request.user.twitterId}).toArray().then(element => {
+      if (element == "") {
+      } else {
+      }
+    })
     response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
     console.log(bus);
   }).catch(e => {
@@ -138,7 +146,8 @@ app.get("/search/:qwe", function(request, response) {
               response.send(request.user.twitterId + " is going to " + request.params.qwe);
               //console.log(request.body);
             } else {
-              response.send(request.user.twitterId + " is already going to " + request.params.qwe);
+              db.collection("places-nightlife").remove({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
+              response.send(request.user.twitterId + " cancelled going to " + request.params.qwe);
               //console.log("poll not added");
               //console.log(request.body);
               //response.send("poll not added")
