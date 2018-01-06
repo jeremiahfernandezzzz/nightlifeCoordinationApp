@@ -115,9 +115,10 @@ app.get("/search", function(request,response){
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
-    db.collection("places-nightlife").find({'placeId' : request.query.q}).count().then(element => {
-      console.log(element)
-    })
+      db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
+        //element
+        console.log(res.id + " " + element)
+      })
       bus[res.name] = res.id
     })
     bus = JSON.stringify(bus);
