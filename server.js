@@ -24,6 +24,11 @@ UserSchema.plugin(findOrCreate);
 //var User = mongoose.model('User', UserSchema);
 var User = mongoose.model('user-nightlife', UserSchema);
 
+var PlaceSchema = new Schema({ placeId: Number, goerId: Number});
+PlaceSchema.plugin(findOrCreate);
+//var User = mongoose.model('User', UserSchema);
+var Place = mongoose.model('places-nightlife', PlaceSchema);
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -87,7 +92,7 @@ app.get("/", function (request, response) {
   if(request.user){
     response.redirect('/search');
   } else {
-    response.sendFile(__dirname + '/public/views/results.html');
+    response.sendFile(__dirname + '/public/views/search.html');
   }
 });
 
@@ -118,8 +123,12 @@ app.get("/search", function(request,response){
     })
     bus = JSON.stringify(bus);
     //response.send(result.jsonBody.businesses[0]);
-    response.sendFile(path.join(__dirname + '/public/views/results.html'), {headers: {"bus": bus}});
+    response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
     console.log(bus);
   }).catch(e => {
   });
+})
+
+app.get("/search/:qwe", function(request, response) {
+  
 })

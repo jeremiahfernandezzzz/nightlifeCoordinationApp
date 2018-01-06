@@ -63,7 +63,7 @@
     var result = document.createElement("a");
     result.setAttribute("class", "button special");
     result.innerHTML = element[0];
-    result.setAttribute("href", element[1]);
+    result.setAttribute("href", "search/" + element[1]);
   //alert(req.getResponseHeader("bus"));
     document.body.append(result)
   })
