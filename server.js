@@ -123,6 +123,7 @@ app.get("/search", function(request,response){
           console.log("connected to " + url);
           db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
             name = res.name + " " + element
+            bus[name] = res.id;
             console.log(name);
           })
         }
@@ -132,12 +133,12 @@ app.get("/search", function(request,response){
          console.log("did not connect to " + url)
         }
       })
-      setTiebus[name] = res.id;
       
+    }).then(function(){
+        bus = JSON.stringify(bus);
+        response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
     })
-    bus = JSON.stringify(bus);
     //response.send(result.jsonBody.businesses[0]);
-    response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
     //console.log(bus);
   }).catch(e => {
   });
