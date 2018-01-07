@@ -122,16 +122,17 @@ app.get("/search", function(request,response){
         if (db){
           console.log("connected to " + url);
           db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
-            c
+            name = res.name + " " + element
+            console.log(name);
           })
         }
         
-        bus[res.name] = res.id;
        
         if (err) {
          console.log("did not connect to " + url)
         }
       })
+      setTiebus[name] = res.id;
       
     })
     bus = JSON.stringify(bus);
