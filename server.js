@@ -115,8 +115,23 @@ app.get("/search", function(request,response){
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
     Object.values(result.jsonBody.businesses).forEach(function(res){
+      var name = "";
       
-      bus[res.name] = res.id;
+      MongoClient.connect(url, function(err, db){
+    
+        if (db){
+          console.log("connected to " + url);
+          db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
+            c
+          })
+        }
+        
+        bus[res.name] = res.id;
+       
+        if (err) {
+         console.log("did not connect to " + url)
+        }
+      })
       
     })
     bus = JSON.stringify(bus);
