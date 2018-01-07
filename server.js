@@ -134,10 +134,11 @@ app.get("/search", function(request,response){
         }
       })
       
-    }).then(function(){
+    })
+    process.setTimeout(function(){
         bus = JSON.stringify(bus);
         response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
-    })
+    }, 2000)
     //response.send(result.jsonBody.businesses[0]);
     //console.log(bus);
   }).catch(e => {
