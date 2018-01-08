@@ -126,16 +126,22 @@ app.get("/search", function(request,response){
           Object.values(element).forEach(function(elementres){
           //  console.log(res)
             if (res.id == elementres.placeId){
-              bus.push({"name" : res.name, "id": res.id, "status" : "may pupunta"})
-              console.log("match")
-            } else {
-              bus.push({"name" : res.name, "id": res.id, "status" : "walang pupunta"})
+              bus.push({
+                "name" : res.name, 
+                "id": res.id, 
+                "status" : "may pupunta"
+              })
+            //  console.log("match")
+            }// else {
+            //  bus.push({"name" : res.name, "id": res.id, "status" : "walang pupunta"})
               //console.log("not match")
-            }
+            //}
           //send();
           })
         })
+        console.log("************************************************************************")
         console.log(bus)
+        console.log("************************************************************************")
       })
     
     
