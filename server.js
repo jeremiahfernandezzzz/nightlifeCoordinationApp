@@ -124,9 +124,12 @@ app.get("/search", function(request,response){
           db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
             name = res.name + " " + element
             bus[name] = res.id;
-            console.log(name);
-          })
-        }
+            console.log(bus);
+          }).then(function(){
+              bus = JSON.stringify(bus);
+              response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
+            })
+          }
         
        
         if (err) {
@@ -135,10 +138,6 @@ app.get("/search", function(request,response){
       })
       
     })
-    process.setTimeout(function(){
-        bus = JSON.stringify(bus);
-        response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
-    }, 2000)
     //response.send(result.jsonBody.businesses[0]);
     //console.log(bus);
   }).catch(e => {
