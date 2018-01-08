@@ -126,16 +126,17 @@ app.get("/search", function(request,response){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
             var goers = 0;
-            
+            var going = false;
             
             Object.values(element).forEach(function(elementres){
               if (res.id == elementres.placeId){
                 goers += 1
               }
               
-              var going = false;
-              if (request.user && request.user.twitterId == elementres.goerId) {
+              if (request.user.twitterId == elementres.goerId) {
                 going = true
+              } else {
+                going = false
               }
             })
           
