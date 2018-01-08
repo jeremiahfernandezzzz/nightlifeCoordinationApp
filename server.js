@@ -121,22 +121,18 @@ app.get("/search", function(request,response){
     
       db.collection("places-nightlife").find({}).toArray().then(element => {
         //
+          var going;
+              
+          
           //console.log(elementres.placeId + " goers ")
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
             var goers = 0;
-            var going;
             
             Object.values(element).forEach(function(elementres){
               if (res.id == elementres.placeId){
                 goers += 1
-              }
-              console.log(request.user.twitterId + " " + elementres.goerId)
-              if (request.user.twitterId == elementres.goerId) {
-                going = true
-              } else {
-                going = false
               }
             })
           
@@ -152,9 +148,21 @@ app.get("/search", function(request,response){
             //  bus.push({"name" : res.name, "id": res.id, "status" : "walang pupunta"})
               //console.log("not match")
             //}
+          
           //send();
           //})
         })
+          bus.forEach(function(res){
+            /*
+            console.log(request.user.twitterId + " " + res.goerId)
+            if (request.user.twitterId == res.goerId) {
+              going = true
+            } else {
+              going = false
+            }
+            */
+            console.log(res + "asdasdasdasd")
+          })
         console.log("************************************************************************")
         console.log(bus)
         console.log("************************************************************************")
