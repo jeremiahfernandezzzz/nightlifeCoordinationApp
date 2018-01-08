@@ -138,7 +138,7 @@ app.get("/search", function(request,response){
               bus.push({
                 "name" : res.name, 
                 "id": res.id, 
-                "status" : status.toString()
+                "status" : status
               })
             //  console.log("match")
             //}// else {
