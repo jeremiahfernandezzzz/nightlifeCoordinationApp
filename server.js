@@ -125,13 +125,17 @@ app.get("/search", function(request,response){
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
-            var goer = 0;
+            var goers = 0;
+            
             
             Object.values(element).forEach(function(elementres){
               if (res.id == elementres.placeId){
-                goer += 1
-              } else {
-                //status = 0
+                goers += 1
+              }
+              
+              var going = false;
+              if (request.user && request.user.twitterId == elementres.goerId) {
+                going = true
               }
             })
           
@@ -139,7 +143,8 @@ app.get("/search", function(request,response){
               bus.push({
                 "name" : res.name, 
                 "id": res.id, 
-                "stat" : status
+                "goers" : goers,
+                "going" : going
               })
             //  console.log("match")
             //}// else {
