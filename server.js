@@ -114,19 +114,28 @@ app.get("/search", function(request,response){
     location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
-    Object.values(result.jsonBody.businesses).forEach(function(res){
-      bus[res.name] = res.id;
-    })
+    //Object.values(result.jsonBody.businesses).forEach(function(res){
+    //  bus[res.name] = res.id;
+    //})
     
-    bus = JSON.stringify(bus);
-    response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
+    
       
-      /*
       MongoClient.connect(url, function(err, db){
     
         if (db){
           console.log("connected to " + url);
           db.collection("places-nightlife").find({}).toArray().then(element => {
+            Object.values(result.jsonBody.businesses).forEach(function(res){
+              if (res.id = element.id){
+                bus[res.name + "asdasdasd"] = res.id;
+              } else {
+                bus[res.name] = res.id;
+              }
+             
+              bus = JSON.stringify(bus);
+              response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
+      
+            })
           })
         }
         
@@ -135,7 +144,7 @@ app.get("/search", function(request,response){
           console.log("did not connect to " + url)
         }
       })
-      */
+      
       
     //response.send(result.jsonBody.businesses[0]);
     //console.log(bus);
