@@ -121,27 +121,32 @@ app.get("/search", function(request,response){
     
       db.collection("places-nightlife").find({}).toArray().then(element => {
         //
-          var going;
               
           
           //console.log(elementres.placeId + " goers ")
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
-            var goers = 0;
+            var goers = [];
+            var going = false;
             
-            Object.values(element).forEach(function(res){
-              if (res.id == res.placeId){
-                goers.push("a")
+            Object.values(element).forEach(function(res1){
+              if (res.id == res1.placeId){
+                goers.push(res1.goerId);
               }
             })
-            console.log(goers)
+            
+            goers.forEach(function(res){
+              if(res == request.user.twitterId){
+                going = true
+              }
+            })
           
             //if (res.id == elementres.placeId){
               bus.push({
                 "name" : res.name, 
                 "id": res.id, 
-                "goers" : goers,
+                "goers" : goers.length,
                 "going" : going
               })
             //  console.log("match")
@@ -153,18 +158,7 @@ app.get("/search", function(request,response){
           //send();
           //})
         })
-        
-          bus.forEach(function(res){
-            /*
-            console.log(request.user.twitterId + " " + res.goerId)
-            if (request.user.twitterId == res.goerId) {
-              going = true
-            } else {
-              going = false
-            }
-            */
-            //console.log(res["goers"] + "asdasdasdasd")
-          })
+
         console.log("************************************************************************")
         console.log(bus)
         console.log("************************************************************************")
