@@ -123,21 +123,29 @@ app.get("/search", function(request,response){
         //
           //console.log(elementres.placeId + " goers ")
         Object.values(result.jsonBody.businesses).forEach(function(res){
-          Object.values(element).forEach(function(elementres){
+          //Object.values(element).forEach(function(elementres){
           //  console.log(res)
-            if (res.id == elementres.placeId){
+            //if (res.id == elementres.placeId){
               bus.push({
                 "name" : res.name, 
                 "id": res.id, 
-                "status" : "may pupunta"
+                "status" : function(){
+                  Object.values(element).forEach(function(elementres){
+                    if (res.id == elementres.placeId){
+                      return "may pupunta"
+                    } else {
+                      return "walang pupunta"
+                    }
+                  })
+                }
               })
             //  console.log("match")
-            }// else {
+            //}// else {
             //  bus.push({"name" : res.name, "id": res.id, "status" : "walang pupunta"})
               //console.log("not match")
             //}
           //send();
-          })
+          //})
         })
         console.log("************************************************************************")
         console.log(bus)
