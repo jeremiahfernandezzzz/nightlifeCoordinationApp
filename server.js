@@ -122,8 +122,10 @@ app.get("/search", function(request,response){
     
         if (db){
           console.log("connected to " + url);
-            db.collection("places-nightlife").find({'placeId' : res.id}).count().then(element => {
-              console.log(bus);
+            db.collection("places-nightlife").find({}).count().then(element => {
+              Object.values(element).forEach(function(res){
+                console.log(res + "asdasdasdasd")
+              })
             })
           }
         
