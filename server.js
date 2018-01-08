@@ -121,25 +121,21 @@ app.get("/search", function(request,response){
     bus = JSON.stringify(bus);
     response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
       
+      /*
       MongoClient.connect(url, function(err, db){
     
         if (db){
           console.log("connected to " + url);
-            db.collection("places-nightlife").find({}).toArray().then(element => {
-              Object.values(element).forEach(function(res){
-                console.log(JSON.stringify(res) + "asdasdasdasd");
-                Object.values(bus).forEach(function(busres){
-                  console.log(JSON.stringify(res) + "asdasdasdasd")
-                })
-              })
-            })
-          }
+          db.collection("places-nightlife").find({}).toArray().then(element => {
+          })
+        }
         
        
         if (err) {
-         console.log("did not connect to " + url)
+          console.log("did not connect to " + url)
         }
       })
+      */
       
     //response.send(result.jsonBody.businesses[0]);
     //console.log(bus);
