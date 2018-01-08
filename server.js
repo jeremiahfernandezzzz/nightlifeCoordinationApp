@@ -118,13 +118,19 @@ app.get("/search", function(request,response){
     //  bus[res.name] = res.id;
     //})
     
-    Object.values(result.jsonBody.businesses).forEach(function(res){
-      
-      db.collection("places-nightlife").find({placeId: res.id}).count().then(element => {
-        bus[res.name + ""] = res.id;
+    
+      db.collection("places-nightlife").find({}).toArray().then(element => {
+        //
+        Object.values(result.jsonBody.businesses).forEach(function(res){
+          if (element.placeId == res.id){
+            bus[res.name + "asdasdasd"] = res.id;
+          } else {
+            bus[res.name] = res.id;
+          }
+          console.log(bus);
+        })
       })
-      
-    })
+    
     
     function send(){
       bus = JSON.stringify(bus);
