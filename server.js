@@ -122,18 +122,20 @@ app.get("/search", function(request,response){
       db.collection("places-nightlife").find({}).toArray().then(element => {
         //
         Object.values(element).forEach(function(elementres){
-          console.log(elementres.placeId)
+          //console.log(elementres.placeId + " goers ")
           Object.values(result.jsonBody.businesses).forEach(function(res){
           //  console.log(res)
-          //  if (elementres.placeId == res.id){
-          //    bus[res.name + "asdasdasd"] = res.id;
-          //  } else {
-          //    bus[res.name] = res.id;
-          //  }
+            if (elementres.placeId == res.id){
+              bus[res.name + " (may pupunta)"] = res.id;
+              console.log("match")
+            } else {
+              bus[res.name] = res.id;
+              console.log("not match")
+            }
           //send();
-            console.log(res.id)
           })
         })
+        console.log(bus)
       })
     
     
