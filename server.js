@@ -121,13 +121,18 @@ app.get("/search", function(request,response){
     
       db.collection("places-nightlife").find({}).toArray().then(element => {
         //
-        Object.values(result.jsonBody.businesses).forEach(function(res){
-          if (element.placeId == res.id){
-            bus[res.name + "asdasdasd"] = res.id;
-          } else {
-            bus[res.name] = res.id;
-          }
-          console.log(bus);
+        Object.values(element).forEach(function(elementres){
+          console.log(elementres.placeId)
+          Object.values(result.jsonBody.businesses).forEach(function(res){
+          //  console.log(res)
+          //  if (elementres.placeId == res.id){
+          //    bus[res.name + "asdasdasd"] = res.id;
+          //  } else {
+          //    bus[res.name] = res.id;
+          //  }
+          //send();
+            console.log(res.id)
+          })
         })
       })
     
