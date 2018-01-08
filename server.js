@@ -125,19 +125,20 @@ app.get("/search", function(request,response){
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
+          function status(){
+            Object.values(element).forEach(function(elementres){
+              if (res.id == elementres.placeId){
+                return 1
+              } else {
+                return 0
+              }
+            })
+          }
             //if (res.id == elementres.placeId){
               bus.push({
                 "name" : res.name, 
                 "id": res.id, 
-                "status" : function(){
-                  Object.values(element).forEach(function(elementres){
-                    if (res.id == elementres.placeId){
-                      return "may pupunta"
-                    } else {
-                      return "walang pupunta"
-                    }
-                  })
-                }
+                "status" : status.toString()
               })
             //  console.log("match")
             //}// else {
