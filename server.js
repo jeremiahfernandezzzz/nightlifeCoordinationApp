@@ -126,7 +126,7 @@ app.get("/search", function(request,response){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
             var goers = 0;
-            var going = false;
+            var going;
             
             Object.values(element).forEach(function(elementres){
               if (res.id == elementres.placeId){
