@@ -117,14 +117,17 @@ app.get("/search", function(request,response){
     Object.values(result.jsonBody.businesses).forEach(function(res){
       bus[res.name] = res.id;
     })
+    
+    bus = JSON.stringify(bus);
+    response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
       
       MongoClient.connect(url, function(err, db){
     
         if (db){
           console.log("connected to " + url);
-            db.collection("places-nightlife").find({}).count().then(element => {
+            db.collection("places-nightlife").find({}).toArray().then(element => {
               Object.values(element).forEach(function(res){
-                console.log(res + "asdasdasdasd")
+                console.log(JSON.parse(res) + "asdasdasdasd")
               })
             })
           }
@@ -140,8 +143,6 @@ app.get("/search", function(request,response){
   }).catch(e => {
   });
   
-  bus = JSON.stringify(bus);
-  response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
 })
 
 app.get("/search/:qwe", function(request, response) {
