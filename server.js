@@ -127,7 +127,10 @@ app.get("/search", function(request,response){
           console.log("connected to " + url);
             db.collection("places-nightlife").find({}).toArray().then(element => {
               Object.values(element).forEach(function(res){
-                console.log(JSON.stringify(res) + "asdasdasdasd")
+                console.log(JSON.stringify(res) + "asdasdasdasd");
+                Object.values(bus).forEach(function(busres){
+                  console.log(JSON.stringify(res) + "asdasdasdasd")
+                })
               })
             })
           }
