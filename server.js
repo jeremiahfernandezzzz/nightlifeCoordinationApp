@@ -108,7 +108,7 @@ app.get("/search", function(request,response){
     var loc = request.query.q
   }
   
-  var bus = {};
+  var bus = [];
   client.search({
     //term:'bars',
     location: request.query.q
@@ -126,11 +126,11 @@ app.get("/search", function(request,response){
           Object.values(element).forEach(function(elementres){
           //  console.log(res)
             if (res.id == elementres.placeId){
-              bus[res.name + " (may pupunta)"] = res.id;
+              bus.push({"name" : res.name, "id": res.id, "status" : "may pupunta"})
               console.log("match")
             } else {
-              bus[res.name] = res.id;
-              console.log("not match")
+              bus.push({"name" : res.name, "id": res.id, "status" : "walang pupunta"})
+              //console.log("not match")
             }
           //send();
           })
