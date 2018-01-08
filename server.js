@@ -125,20 +125,21 @@ app.get("/search", function(request,response){
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
-            var status;
+            var goer = 0;
             
             Object.values(element).forEach(function(elementres){
               if (res.id == elementres.placeId){
-                status = 1
+                goer += 1
               } else {
-                status = 0
+                //status = 0
               }
             })
+          
             //if (res.id == elementres.placeId){
               bus.push({
                 "name" : res.name, 
                 "id": res.id, 
-                "status" : status
+                "stat" : status
               })
             //  console.log("match")
             //}// else {
