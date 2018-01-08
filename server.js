@@ -132,7 +132,7 @@ app.get("/search", function(request,response){
               if (res.id == elementres.placeId){
                 goers += 1
               }
-              
+              console.log(request.user.twitterId + " " + elementres.goerId)
               if (request.user.twitterId == elementres.goerId) {
                 going = true
               } else {
