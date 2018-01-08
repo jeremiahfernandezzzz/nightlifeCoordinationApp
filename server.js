@@ -125,15 +125,15 @@ app.get("/search", function(request,response){
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
           //  console.log(res)
-          function status(){
+            var status;
+            
             Object.values(element).forEach(function(elementres){
               if (res.id == elementres.placeId){
-                return 1
+                status = 1
               } else {
-                return 0
+                status = 0
               }
             })
-          }
             //if (res.id == elementres.placeId){
               bus.push({
                 "name" : res.name, 
