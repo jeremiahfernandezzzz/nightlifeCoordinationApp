@@ -130,11 +130,12 @@ app.get("/search", function(request,response){
           //  console.log(res)
             var goers = 0;
             
-            Object.values(element).forEach(function(elementres){
-              if (res.id == elementres.placeId){
-                goers += 1
+            Object.values(element).forEach(function(res){
+              if (res.id == res.placeId){
+                goers.push("a")
               }
             })
+            console.log(goers)
           
             //if (res.id == elementres.placeId){
               bus.push({
@@ -152,6 +153,7 @@ app.get("/search", function(request,response){
           //send();
           //})
         })
+        
           bus.forEach(function(res){
             /*
             console.log(request.user.twitterId + " " + res.goerId)
@@ -161,7 +163,7 @@ app.get("/search", function(request,response){
               going = false
             }
             */
-            console.log(res + "asdasdasdasd")
+            //console.log(res["goers"] + "asdasdasdasd")
           })
         console.log("************************************************************************")
         console.log(bus)
