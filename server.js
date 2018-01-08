@@ -135,7 +135,7 @@ app.get("/search", function(request,response){
           //send();
           })
         })
-        console.log(bus)
+        send()
       })
     
     
