@@ -35,7 +35,7 @@ db.once('open', function() {
 const yelp = require('yelp-fusion');
  
 const client = yelp.client(process.env.apiKey);
- 
+var clickedLoc = "";
 
 // Authentication configuration
 app.use(session({
@@ -64,7 +64,7 @@ passport.deserializeUser(function(user, done) {
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/',
+  passport.authenticate('twitter', { successRedirect: '/back',
                                      failureRedirect: '/login'}));
 
 // we've started you off with Express, 
@@ -92,12 +92,17 @@ app.get("/", function (request, response) {
   //}
 });
 
+app.get("/back", function(request,response){
+  response.redirect("search?q=" + prevSearch)
+})
+
 app.get("/logout", function(request, response){
   request.logout();
   response.redirect('/');
 })
 
 app.get("/search", function(request,response){
+  clickedLoc = request.query.q
   var loc = "";
   var userId = "";
   console.log(request.user);
@@ -184,6 +189,7 @@ app.get("/search", function(request,response){
 
 app.get("/go/:qwe", function(request, response) {
   //function(token, tokenSecret, place, cb) {
+  //console.log(request.query.q + "qweqwe")
   if(request.user){
      MongoClient.connect(url, function(err, db){
     
