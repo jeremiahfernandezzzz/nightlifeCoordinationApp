@@ -41,10 +41,10 @@ const client = new yelp({
   //token: 'token',
   //token_secret: 'token-secret',
   
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  token: process.env.clientID,
-  token_secret:process.env.clientSecret
+  consumer_key: process.env.ConsumerKey,
+  consumer_secret: process.env.ConsumerSecret,
+  token: process.env.Token,
+  token_secret:process.env.TokenSecret
 });
  
 //var clickedLoc = "";
