@@ -61,11 +61,14 @@
   
   bus.forEach(function(element){
     var result = document.createElement("a");
-    if (element["going"] == true) {
+    if (element["going"] == false) {
       result.setAttribute("class", "button special");
-    } else {}
+    } else {
+      result.setAttribute("class", "button");
+    }
+    
     //result.setAttribute("style", "color:red");
-    result.innerHTML = element["name"] + " " + element["going"] + " " + element["goers"];
+    result.innerHTML = element["name"] + " " + element["goers"];
     result.setAttribute("href", "search/" + element["id"]);
   //alert(req.getResponseHeader("bus"));
     document.body.append(result)
