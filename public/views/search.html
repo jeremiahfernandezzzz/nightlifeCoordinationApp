@@ -58,6 +58,11 @@
   req.send(null);
   
   var bus = JSON.parse(req.getResponseHeader("bus"));
+  var userId = req.getResponseHeader("userId");
+  
+  if (userId == "") {
+    document.querySelector("#signIn")
+  }
   
   bus.forEach(function(element){
     var result =  document.createElement("a");

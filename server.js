@@ -35,7 +35,7 @@ db.once('open', function() {
 const yelp = require('yelp-fusion');
  
 const client = yelp.client(process.env.apiKey);
-var clickedLoc = "";
+//var clickedLoc = "";
 var prevSearch = ""
 
 // Authentication configuration
@@ -94,7 +94,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/back", function(request,response){
-  response.redirect("go/" + clickedLoc)
+  response.redirect("/search?q=" + prevSearch)
 })
 
 app.get("/logout", function(request, response){
@@ -176,7 +176,7 @@ app.get("/search", function(request,response){
     
     function send(){
       bus = JSON.stringify(bus);
-      response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus}});
+      response.sendFile(path.join(__dirname + '/public/views/search.html'), {headers: {"bus": bus, "userId" : userId}});
     }
 
       
@@ -191,7 +191,8 @@ app.get("/search", function(request,response){
 app.get("/go/:qwe", function(request, response) {
   //function(token, tokenSecret, place, cb) {
   //console.log(request.query.q + "qweqwe")
-  clickedLoc = request.params.qwe
+  //console.log(prevSearch)
+  //clickedLoc = request.params.qwe
   if(request.user){
      MongoClient.connect(url, function(err, db){
     
@@ -201,11 +202,11 @@ app.get("/go/:qwe", function(request, response) {
             if (element == "") {
               db.collection("places-nightlife").insert({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
               //response.send(request.user.twitterId + " is going to " + request.params.qwe);
-              response.redirect("/search?q=" + prevSearch)
+              response.redirect("back")
               //console.log(request.body);
             } else {
               db.collection("places-nightlife").remove({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
-              response.redirect("/search?q=" + prevSearch)
+              response.redirect("back")
               //response.send(request.user.twitterId + " cancelled going to " + request.params.qwe);
               //console.log("poll not added");
               //console.log(request.body);
