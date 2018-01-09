@@ -47,7 +47,7 @@
 					</header>
 				</div>
 			</section>
-
+    <p id="results"></p>
 	</body>
 </html>
 
@@ -60,7 +60,8 @@
   var bus = JSON.parse(req.getResponseHeader("bus"));
   
   bus.forEach(function(element){
-    var result = document.createElement("a");
+    var result =  document.createElement("a");
+    result.setAttribute("class", "button special");
     if (element["going"] == false) {
       result.setAttribute("class", "button special");
     } else {
@@ -68,9 +69,9 @@
     }
     
     //result.setAttribute("style", "color:red");
-    result.innerHTML = element["name"] + " " + element["goers"];
+    result.innerHTML = element["name"] + " [" + element["goers"] + "]";
     result.setAttribute("href", "search/" + element["id"]);
   //alert(req.getResponseHeader("bus"));
-    document.body.append(result)
+    document.querySelector("#results").append(result)
   })
 </script>
