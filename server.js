@@ -64,7 +64,7 @@ passport.deserializeUser(function(user, done) {
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/search',
+  passport.authenticate('twitter', { successRedirect: '/',
                                      failureRedirect: '/login'}));
 
 // we've started you off with Express, 
@@ -191,11 +191,13 @@ app.get("/go/:qwe", function(request, response) {
               db.collection("places-nightlife").find({'placeId' : request.params.qwe, 'goerId': request.user.twitterId}).toArray().then(element => {
             if (element == "") {
               db.collection("places-nightlife").insert({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
-              response.send(request.user.twitterId + " is going to " + request.params.qwe);
+              //response.send(request.user.twitterId + " is going to " + request.params.qwe);
+              response.redirect("back")
               //console.log(request.body);
             } else {
               db.collection("places-nightlife").remove({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
-              response.send(request.user.twitterId + " cancelled going to " + request.params.qwe);
+              response.redirect("back")
+              //response.send(request.user.twitterId + " cancelled going to " + request.params.qwe);
               //console.log("poll not added");
               //console.log(request.body);
               //response.send("poll not added")
