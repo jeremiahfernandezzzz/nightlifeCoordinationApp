@@ -111,6 +111,7 @@ app.get("/search", function(request,response){
   var bus = [];
   client.search({
     //term:'bars',
+    categories: 'bars',
     location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
