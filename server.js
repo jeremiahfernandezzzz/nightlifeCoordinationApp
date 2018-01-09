@@ -32,9 +32,16 @@ db.once('open', function() {
 });
 'use strict';
  
-const yelp = require('yelp-fusion');
+//const yelp = require('yelp-fusion');
+const yelp = require('yelp');
  
-const client = yelp.client(process.env.apiKey);
+const client = new yelp({
+  consumer_key: TWITTER_CONSUMER_KEY,
+  consumer_secret: TWITTER_CONSUMER_SECRET,
+  token: 'token',
+  token_secret: 'token-secret',
+});
+ 
 //var clickedLoc = "";
 var prevSearch = ""
 
