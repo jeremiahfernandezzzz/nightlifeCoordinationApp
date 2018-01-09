@@ -64,7 +64,7 @@ passport.deserializeUser(function(user, done) {
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/',
+  passport.authenticate('twitter', { successRedirect: '/search',
                                      failureRedirect: '/login'}));
 
 // we've started you off with Express, 
@@ -181,7 +181,7 @@ app.get("/search", function(request,response){
   
 })
 
-app.get("/search/:qwe", function(request, response) {
+app.get("/go/:qwe", function(request, response) {
   //function(token, tokenSecret, place, cb) {
   if(request.user){
      MongoClient.connect(url, function(err, db){

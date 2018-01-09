@@ -74,7 +74,7 @@
     
     //result.setAttribute("style", "color:red");
     result.innerHTML = element["name"] + "  |  " + element["goers"] + " going";
-    result.setAttribute("href", "search/" + element["id"]);
+    result.setAttribute("href", "go/" + element["id"]);
   //alert(req.getResponseHeader("bus"));
     result.append(image);
     document.querySelector("#results").append(result)
