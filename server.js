@@ -36,6 +36,7 @@ const yelp = require('yelp-fusion');
  
 const client = yelp.client(process.env.apiKey);
 var clickedLoc = "";
+var prevSearch = ""
 
 // Authentication configuration
 app.use(session({
@@ -93,7 +94,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/back", function(request,response){
-  response.redirect("search?q=" + prevSearch)
+  response.redirect("go/" + clickedLoc)
 })
 
 app.get("/logout", function(request, response){
@@ -102,7 +103,7 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
-  clickedLoc = request.query.q
+  prevSearch = request.query.q;
   var loc = "";
   var userId = "";
   console.log(request.user);
@@ -190,6 +191,7 @@ app.get("/search", function(request,response){
 app.get("/go/:qwe", function(request, response) {
   //function(token, tokenSecret, place, cb) {
   //console.log(request.query.q + "qweqwe")
+  clickedLoc = request.params.qwe
   if(request.user){
      MongoClient.connect(url, function(err, db){
     
@@ -199,11 +201,11 @@ app.get("/go/:qwe", function(request, response) {
             if (element == "") {
               db.collection("places-nightlife").insert({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
               //response.send(request.user.twitterId + " is going to " + request.params.qwe);
-              response.redirect("back")
+              response.redirect("/search?q=" + prevSearch)
               //console.log(request.body);
             } else {
               db.collection("places-nightlife").remove({'placeId' : request.params.qwe, 'goerId': request.user.twitterId});
-              response.redirect("back")
+              response.redirect("/search?q=" + prevSearch)
               //response.send(request.user.twitterId + " cancelled going to " + request.params.qwe);
               //console.log("poll not added");
               //console.log(request.body);
