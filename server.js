@@ -41,10 +41,10 @@ const client = new yelp({
   //token: 'token',
   //token_secret: 'token-secret',
   
-  consumer_key:'mnkS4CfvyNog7aZCAyZWqA',
-  consumer_secret:'6GrztstrgCYXCdfIsq4g000pP7I',
-  token: process.env.apiKey,
-  token_secret:'zLBXmizbXd9bJ-89iN8F-X-e154'
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  token: process.env.clientID,
+  token_secret:process.env.clientSecret
 });
  
 //var clickedLoc = "";
@@ -106,7 +106,11 @@ app.get("/", function (request, response) {
 });
 
 app.get("/back", function(request,response){
-  response.redirect("/search?q=" + prevSearch)
+  if (prevSearch) {
+    response.redirect("/search?q=" + prevSearch)
+  } else {
+    response.redirect("/")
+  }
 })
 
 app.get("/logout", function(request, response){
