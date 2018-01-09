@@ -99,7 +99,7 @@ app.get("/back", function(request,response){
 
 app.get("/logout", function(request, response){
   request.logout();
-  response.redirect('/');
+  response.redirect('back');
 })
 
 app.get("/search", function(request,response){
@@ -117,7 +117,7 @@ app.get("/search", function(request,response){
   var bus = [];
   client.search({
     //term:'bars',
-    categories: 'bars',
+    categories: 'nightlife, All',
     location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))

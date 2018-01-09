@@ -37,11 +37,11 @@
 			<section id="one" class="wrapper style3 special">
 				<div class="container 50%">
 					<header class="major">
-						<h2>search</h2>
+						<h2>Nightlife Coordination App</h2>
               <form action="/search" method="get">
               <div class="12u$(small)">
                 <input type="text" id="mySearch" name="q">
-                <input type="Submit" class="button special" value="submit">
+                <input type="Submit" class="button special" value="search">
               </div>
               </form>
 					</header>
@@ -60,8 +60,11 @@
   var bus = JSON.parse(req.getResponseHeader("bus"));
   var userId = req.getResponseHeader("userId");
   
-  if (userId == "") {
-    document.querySelector("#signIn")
+  if (userId == "" || !userId) {
+    document.querySelector("#signIn").innerHTML = "Sign In"
+  } else {
+    document.querySelector("#signIn").innerHTML = "Sign Out"
+    document.querySelector("#signIn").setAttribute("href", "/logout")
   }
   
   bus.forEach(function(element){
