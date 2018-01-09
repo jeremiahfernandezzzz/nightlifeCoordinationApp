@@ -126,7 +126,7 @@ app.get("/search", function(request,response){
           //console.log(elementres.placeId + " goers ")
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
-            console.log(res)
+            //console.log(res)
             var goers = [];
             var going = false;
             
@@ -147,7 +147,8 @@ app.get("/search", function(request,response){
                 "name" : res.name, 
                 "id": res.id, 
                 "goers" : goers.length,
-                "going" : going
+                "going" : going,
+                "image" : res.image_url
               })
             //  console.log("match")
             //}// else {
