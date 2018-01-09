@@ -137,7 +137,7 @@ app.get("/search", function(request,response){
             })
             
             goers.forEach(function(res){
-              if(res == request.user.twitterId){
+              if(request.user && res == request.user.twitterId){
                 going = true
               }
             })
@@ -162,6 +162,7 @@ app.get("/search", function(request,response){
         console.log("************************************************************************")
         console.log(bus)
         console.log("************************************************************************")
+        send()
       })
     
     

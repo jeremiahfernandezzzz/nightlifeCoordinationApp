@@ -59,11 +59,14 @@
   
   var bus = JSON.parse(req.getResponseHeader("bus"));
   
-  Object.entries(bus).forEach(function(element){
+  bus.forEach(function(element){
     var result = document.createElement("a");
-    result.setAttribute("class", "button special");
-    result.innerHTML = element[0];
-    result.setAttribute("href", "search/" + element[1]);
+    if (element["going"] == true) {
+      result.setAttribute("class", "button special");
+    } else {}
+    //result.setAttribute("style", "color:red");
+    result.innerHTML = element["name"] + " " + element["going"] + " " + element["goers"];
+    result.setAttribute("href", "search/" + element["id"]);
   //alert(req.getResponseHeader("bus"));
     document.body.append(result)
   })
