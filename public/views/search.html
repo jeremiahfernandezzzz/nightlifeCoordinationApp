@@ -47,7 +47,7 @@
 					</header>
 				</div>
 			</section>
-    <p id="results"></p>
+    <div id="results" class="container 90%"></div>
 	</body>
 </html>
 
@@ -61,7 +61,11 @@
   
   bus.forEach(function(element){
     var result =  document.createElement("a");
+    var image = document.createElement("img");
+    image.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-social-twitter.svg");
+    image.setAttribute("style", "width:10%")
     result.setAttribute("class", "button special");
+    result.setAttribute("style", "width:100%");
     if (element["going"] == false) {
       result.setAttribute("class", "button special");
     } else {
@@ -72,6 +76,8 @@
     result.innerHTML = element["name"] + " [" + element["goers"] + "]";
     result.setAttribute("href", "search/" + element["id"]);
   //alert(req.getResponseHeader("bus"));
+    result.append(image)
     document.querySelector("#results").append(result)
+    document.querySelector("#results").append(document.createElement("hr"))
   })
 </script>
