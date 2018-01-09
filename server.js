@@ -126,7 +126,7 @@ app.get("/search", function(request,response){
           //console.log(elementres.placeId + " goers ")
         Object.values(result.jsonBody.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
-          //  console.log(res)
+            console.log(res)
             var goers = [];
             var going = false;
             
