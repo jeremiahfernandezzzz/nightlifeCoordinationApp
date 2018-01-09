@@ -36,10 +36,15 @@ db.once('open', function() {
 const yelp = require('yelp');
  
 const client = new yelp({
-  consumer_key: TWITTER_CONSUMER_KEY,
-  consumer_secret: TWITTER_CONSUMER_SECRET,
-  token: 'token',
-  token_secret: 'token-secret',
+  //consumer_key: TWITTER_CONSUMER_KEY,
+  //consumer_secret: TWITTER_CONSUMER_SECRET,
+  //token: 'token',
+  //token_secret: 'token-secret',
+  
+  consumer_key:'mnkS4CfvyNog7aZCAyZWqA',
+  consumer_secret:'6GrztstrgCYXCdfIsq4g000pP7I',
+  token: process.env.apiKey,
+  token_secret:'zLBXmizbXd9bJ-89iN8F-X-e154'
 });
  
 //var clickedLoc = "";
@@ -124,7 +129,7 @@ app.get("/search", function(request,response){
   var bus = [];
   client.search({
     //term:'bars',
-    categories: 'nightlife, All',
+    term: 'nightlife, bars',
     location: request.query.q
   }).then(result => {
     //response.send(JSON.stringify(result).replace(/\\/g, /\n/))
@@ -132,13 +137,13 @@ app.get("/search", function(request,response){
     //  bus[res.name] = res.id;
     //})
     
-    
+    console.log(result)
       db.collection("places-nightlife").find({}).toArray().then(element => {
         //
               
           
           //console.log(elementres.placeId + " goers ")
-        Object.values(result.jsonBody.businesses).forEach(function(res){
+        Object.values(result.businesses).forEach(function(res){
           //Object.values(element).forEach(function(elementres){
             //console.log(res)
             var goers = [];
