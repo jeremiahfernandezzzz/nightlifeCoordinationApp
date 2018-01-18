@@ -119,7 +119,7 @@ app.get("/logout", function(request, response){
 })
 
 app.get("/search", function(request,response){
-  prevSearch = request.query.q;
+  prevSearch = request.query.qwe;
   var loc = "";
   var userId = "";
   console.log(request.user);
