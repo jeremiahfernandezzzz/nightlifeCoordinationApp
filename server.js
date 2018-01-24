@@ -113,6 +113,8 @@ app.get("/back", function(request,response){
   }
 })
 
+
+
 app.get("/logout", function(request, response){
   request.logout();
   response.redirect('back');
