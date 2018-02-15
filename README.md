@@ -1,3 +1,3 @@
-FCC Back End Web Dev Certification
-second Dynamic Web App Project
-\ ゜o゜)ノ
+FCC Back End Web Dev Certification  
+Dynamic Web App Project  
+https://fast-case.glitch.me/
